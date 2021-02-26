@@ -7,4 +7,4 @@
 
 <?php get_footer() ?>
 
-<!-- https://grafikart.fr/tutoriels/wordpress-hierarchy-1258#autoplay  5:28 -->
+
