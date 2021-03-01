@@ -15,8 +15,14 @@
             </div>
         </div>
 
-<?php endwhile; else: ?>
+<?php endwhile ?>
     </div>
+
+<?php montheme_pagination();?>
+
+<?php else: ?>
+
+
     <p>Aucun article :(</p>
 <?php endif; ?>
 
