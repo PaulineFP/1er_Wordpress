@@ -1,6 +1,4 @@
 <?php
-
-
 function montheme_supports (){
     add_theme_support('title-tag');
     add_theme_support( 'post-thumbnails' );
@@ -64,9 +62,38 @@ function montheme_menu_link_class ($attrs): array
     return $attrs;
 }
 
+function montheme_add_custom_box () {
+    add_meta_box('montheme_sponso', 'Sponsoring', 'montheme_render_sponso_box', 'post');
+}
+
+function montheme_render_sponso_box () {
+    ?>
+    <input type="hidden" value="0" name="montheme_sponso">
+    <input type="checkbox" value="1" name="montheme_sponso">
+    <label for="monthemesponso">Cet article est sponsorisé ? </label>
+<?php
+}
+
+
+function montheme_save_sponso ($post_id) {
+    if (array_key_exists('montheme_sponso', $_POST) && current_user_can('edit_post', $post->ID)) {
+         if ($_POST['montheme_sponso'] === '0'){
+            delete_post_meta($post_id, 'montheme_sponso');
+         }else{
+            update_post_meta($post_id, 'montheme_sponso', 1);
+         }
+    }
+}
+
 // Register style sheet.
 add_action('after_setup_theme', 'montheme_supports');
 add_action('wp_enqueue_scripts', 'montheme_register_assets');
 add_filter('document_title_separator', 'montheme_title_separator');
 add_filter('nav_menu_css_class', 'montheme_menu_class');
 add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
+//ajouter un élément de méta-donnée sur les outils de travail des modifications
+add_action('add_meta_boxes', 'montheme_add_custom_box');
+add_action('save_post', 'montheme_save_sponso');
+
+
+//https://grafikart.fr/tutoriels/wordpress-metabox-1265#autoplay 10:24

@@ -4,7 +4,6 @@
  * Template Post Type: page, post
  */
 ?>
-?>
 
 <?php get_header() ?>
 
