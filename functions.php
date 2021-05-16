@@ -96,4 +96,7 @@ add_action('add_meta_boxes', 'montheme_add_custom_box');
 add_action('save_post', 'montheme_save_sponso');
 
 
-//https://grafikart.fr/tutoriels/wordpress-metabox-1265#autoplay 10:24
+//https://grafikart.fr/tutoriels/wordpress-metabox-1265#autoplay
+// Impost class pour meta sponso //
+//require_once('metaboxes/sponso.php');
+//SponsoMetaBox::register();
